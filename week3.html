@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Weather App - Week 3</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2563eb;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aura Weather App</h1>
+    <p>Week 3 - Weather API Integration</p>
+
+    <button onclick="getWeather()">Fetch Weather Data</button>
+
+    <p>Open Browser Console (F12) to view API response.</p>
+
+    <script>
+        // Replace with your OpenWeatherMap API Key
+        const API_KEY = "YOUR_API_KEY";
+
+        async function getWeather() {
+            const city = "Mumbai";
+
+            try {
+                const response = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+                );
+
+                const data = await response.json();
+
+                console.log("Weather API Response:");
+                console.log(data);
+
+                alert("Weather data fetched successfully! Check Console (F12).");
+
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        }
+    </script>
+
+</body>
+</html>
