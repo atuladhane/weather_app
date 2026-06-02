@@ -5,21 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura Weather App</title>
 
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .search-section {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .search-section input {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-section button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .current-weather,
+        .location-section,
+        .forecast-section {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .weather-card,
+        .location-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .forecast-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .forecast-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .forecast-container {
+                flex-direction: column;
+            }
+
+            .search-section input {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .search-section button {
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Welcome to Aura Weather App</h1>
-        <p>Week 1 Project Setup Completed Successfully.</p>
+    <!-- Header -->
+    <header>
+        <h1>Aura Weather App</h1>
+        <p>Responsive Weather Dashboard Layout</p>
+    </header>
 
-        <button id="testBtn">Click Me</button>
-        <p id="message"></p>
-    </div>
+    <!-- Search Section -->
+    <section class="search-section">
+        <input type="text" placeholder="Enter City Name">
+        <button>Search</button>
+    </section>
 
-    <!-- JavaScript File -->
-    <script src="script.js"></script>
+    <!-- Current Weather Section -->
+    <section class="current-weather">
+        <h2>Current Weather</h2>
+        <div class="weather-card">
+            <h3>Mumbai</h3>
+            <p>Temperature: 30°C</p>
+            <p>Condition: Sunny</p>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section">
+        <h2>Location Information</h2>
+        <div class="location-card">
+            <p>Country: India</p>
+            <p>Region: Maharashtra</p>
+        </div>
+    </section>
+
+    <!-- Forecast Section -->
+    <section class="forecast-section">
+        <h2>5-Day Forecast</h2>
+
+        <div class="forecast-container">
+            <div class="forecast-card">
+                <h3>Mon</h3>
+                <p>30°C</p>
+            </div>
+
+            <div class="forecast-card">
+                <h3>Tue</h3>
+                <p>29°C</p>
+            </div>
+
+            <div class="forecast-card">
+                <h3>Wed</h3>
+                <p>31°C</p>
+            </div>
+
+            <div class="forecast-card">
+                <h3>Thu</h3>
+                <p>28°C</p>
+            </div>
+
+            <div class="forecast-card">
+                <h3>Fri</h3>
+                <p>27°C</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Aura Weather App</p>
+    </footer>
+
+    <script>
+        console.log("Week 2 Layout Design Completed Successfully");
+    </script>
 
 </body>
 </html>
