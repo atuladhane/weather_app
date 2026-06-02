@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Weather App - Week 4</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+            width:350px;
+            text-align:center;
+        }
+
+        h1{
+            margin-bottom:20px;
+            color:#2563eb;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-bottom:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            border:none;
+            background:#2563eb;
+            color:white;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .weather-card{
+            margin-top:20px;
+            padding:20px;
+            background:#f4f4f4;
+            border-radius:10px;
+            display:none;
+        }
+
+        .weather-card h2{
+            color:#333;
+            margin-bottom:10px;
+        }
+
+        .weather-info{
+            font-size:18px;
+            margin:8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Aura Weather App</h1>
+
+    <input type="text" id="cityInput" placeholder="Enter City Name">
+
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div class="weather-card" id="weatherCard">
+        <h2 id="cityName"></h2>
+
+        <div class="weather-info">
+            🌡 Temperature:
+            <span id="temperature"></span>
+        </div>
+
+        <div class="weather-info">
+            💧 Humidity:
+            <span id="humidity"></span>
+        </div>
+
+        <div class="weather-info">
+            ☁ Condition:
+            <span id="condition"></span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const API_KEY = "YOUR_API_KEY";
+
+async function getWeather(){
+
+    const city = document.getElementById("cityInput").value;
+
+    if(city === ""){
+        alert("Please enter a city name");
+        return;
+    }
+
+    try{
+
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+        // Extract relevant data
+        const temperature = data.main.temp;
+        const humidity = data.main.humidity;
+        const condition = data.weather[0].main;
+
+        // Update UI
+        document.getElementById("cityName").innerText = data.name;
+        document.getElementById("temperature").innerText = temperature + " °C";
+        document.getElementById("humidity").innerText = humidity + "%";
+        document.getElementById("condition").innerText = condition;
+
+        document.getElementById("weatherCard").style.display = "block";
+
+    }catch(error){
+        console.error(error);
+        alert("Unable to fetch weather data.");
+    }
+}
+
+</script>
+
+</body>
+</html>
